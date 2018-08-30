@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
-* Студент: [Арина Бусыгина](https://up.htmlacademy.ru/javascript/15/user/56757).
-* Наставник: `Неизвестно`.
+* Студент: [Ксения Кравчук](https://htmlacademy.ru/profile/id846297).
+* Наставник: `Александр Кравчук`.
 
 ---
 
