@@ -15,10 +15,10 @@ var BAR = {
 };
 
 var TEXT_PADDINGS = {
-  left: 145,
+  left: 155,
   textbarTop: 265,
   scorebarTop: 80,
-  barStep: 100,
+  barStep: 90,
   mainLine1: 35,
   mainLine2: 55
 };
@@ -38,6 +38,13 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
+var calculateBarHeight = function (time, maxElement) {
+  var barHeight = time * BAR.height / maxElement;
+  return barHeight;
+};
+
+
+
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD.coordX + CLOUD.shadowShift, CLOUD.coordY + CLOUD.shadowShift, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD.coordX, CLOUD.coordY, '#fff');
@@ -51,16 +58,16 @@ window.renderStatistics = function (ctx, names, times) {
 
   for (var i = 0; i < names.length; i++) {
     var step = TEXT_PADDINGS.left + TEXT_PADDINGS.barStep * i;
-    var indent = BAR.height * (1 - times[i] / maxTime);
+    var indent = BAR.height - calculateBarHeight(times[i], maxTime);
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], step, TEXT_PADDINGS.textbarTop);
     ctx.fillText(Math.round(times[i]), step, TEXT_PADDINGS.scorebarTop + indent);
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-      ctx.fillRect(step, BAR.paddingTop + indent, BAR.width, (times[i] * BAR.height) / maxTime);
+      ctx.fillRect(step, BAR.paddingTop + indent, BAR.width, calculateBarHeight(times[i], maxTime));
     } else {
-      ctx.fillStyle = 'rgba(14, 18, 207, ' + Math.random() + ')';
-      ctx.fillRect(step, BAR.paddingTop + indent, BAR.width, (times[i] * BAR.height) / maxTime);
+      ctx.fillStyle = 'rgba(14, 18, 207, ' + (Math.random()*0.9 + 0.1) + ')';
+      ctx.fillRect(step, BAR.paddingTop + indent, BAR.width, calculateBarHeight(times[i], maxTime));
     }
   }
 };
