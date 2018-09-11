@@ -49,10 +49,11 @@ var wizardsListLength = 4;
 var wizards = [];
 
 for (var i = 0; i < wizardsListLength; i++) {
-  wizards[i] = {};
-  wizards[i].name = createName(names, surnames);
-  wizards[i].coatColor = getRandomElement(mantleColor);
-  wizards[i].eyesColor = getRandomElement(eyeColor);
+  wizards[i] = {
+    name: createName(names, surnames),
+    coatColor: getRandomElement(mantleColor),
+    eyesColor: getRandomElement(eyeColor)
+  };
 }
 
 for (var i = 0; i < wizards.length; i++) {
